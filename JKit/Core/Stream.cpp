@@ -5,18 +5,18 @@
 namespace J {
 
 
-StreamException::StreamException(const String& reason) G3D_NOEXCEPT
+StreamException::StreamException(const String& reason) JKIT_NOEXCEPT
 	: mReason(reason)
 {
 }
 
 
-StreamException::~StreamException() G3D_NOEXCEPT
+StreamException::~StreamException() JKIT_NOEXCEPT
 {
 }
 
 
-String StreamException::what() const G3D_NOEXCEPT
+String StreamException::what() const JKIT_NOEXCEPT
 {
 	return mReason;
 }

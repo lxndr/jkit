@@ -1,5 +1,5 @@
-#ifndef __MAP_HPP__
-#define __MAP_HPP__
+#ifndef __JKIT__CORE__MAP_HPP__
+#define __JKIT__CORE__MAP_HPP__
 
 #include <assert.h>
 #include <malloc.h>
@@ -8,11 +8,11 @@
 #include <utility>
 
 
-namespace g3d {
+namespace J {
 
 
 template <typename KEY_TYPE, typename VALUE_TYPE>
-class G3D_PUBLIC_API Map
+class JKIT_PUBLIC_API Map
 {
 public:
 	/**

@@ -1,5 +1,5 @@
-#ifndef __JKIT__STREAM_HPP__
-#define __JKIT__STREAM_HPP__
+#ifndef __JKIT__CORE__STREAM_HPP__
+#define __JKIT__CORE__STREAM_HPP__
 
 #include <JKit/Core/Exception.hpp>
 #include <JKit/Core/Platform.hpp>

@@ -1,9 +1,9 @@
 #include <malloc.h>
 #include <string.h>
-#include <Core/MemoryStream.hpp>
+#include <JKit/Core/MemoryStream.hpp>
 
 
-namespace g3d {
+namespace J {
 
 
 void MemoryStream::resize(size_t length)

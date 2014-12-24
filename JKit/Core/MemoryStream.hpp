@@ -1,13 +1,13 @@
-#ifndef __MEMORY_STREAM_HPP__
-#define __MEMORY_STREAM_HPP__
+#ifndef __JKIT__CORE__MEMORY_STREAM_HPP__
+#define __JKIT__CORE__MEMORY_STREAM_HPP__
 
-#include <Core/Stream.hpp>
-
-
-namespace g3d {
+#include <JKit/Core/Stream.hpp>
 
 
-class G3D_PUBLIC_API MemoryStream : public Stream
+namespace J {
+
+
+class JKIT_PUBLIC_API MemoryStream : public Stream
 {
 public:
 	/**
