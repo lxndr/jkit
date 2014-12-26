@@ -7,13 +7,13 @@
 namespace J {
 
 
-class G3D_LOCAL_API Linux_FileStream : public FileStream
+class JKIT_LOCAL_API PosixFileStream : public FileStream
 {
 public:
-	Linux_FileStream(const String& fname);
-	Linux_FileStream(const String& fname, bool append);
-	Linux_FileStream(int fileno);
-	~Linux_FileStream();
+	PosixFileStream(const String& fname);
+	PosixFileStream(const String& fname, bool append);
+	PosixFileStream(int fileno, bool close);
+	~PosixFileStream();
 	
 	void seek(int64_t offset, SeekType type);
 	int64_t tell() const;
@@ -21,9 +21,11 @@ public:
 	int32_t read(char* buffer, int32_t count);
 	int32_t peek(char* buffer, int32_t count);
 	int32_t write(const char* buffer, int32_t count);
+	void flush() const;
 
 private:
 	int m_File;
+	bool m_Close;
 };
 
 

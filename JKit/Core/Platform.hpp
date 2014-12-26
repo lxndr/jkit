@@ -72,4 +72,9 @@
 #endif
 
 
+#if defined(JKIT_PLATFORM_LINUX)
+	#define JKIT_NEW_LINE "\n"
+#endif
+
+
 #endif

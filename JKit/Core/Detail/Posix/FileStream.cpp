@@ -2,13 +2,13 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
-// #include <JKit/Core/Linux/FileStream.hpp>
+#include <JKit/Core/Detail/Posix/FileStream.hpp>
 
 
 namespace J {
 
 
-Linux_FileStream::Linux_FileStream(const String& fname)
+PosixFileStream::PosixFileStream(const String& fname)
 	: FileStream(fname)
 {
 	m_File = ::open((const char*) fname, O_RDONLY, S_IRUSR|S_IWUSR|S_IRGRP);
@@ -17,7 +17,7 @@ Linux_FileStream::Linux_FileStream(const String& fname)
 }
 
 
-Linux_FileStream::Linux_FileStream(const String& fname, bool append)
+PosixFileStream::PosixFileStream(const String& fname, bool append)
 	: FileStream(fname)
 {
 	int flags = O_CREAT|O_WRONLY;
@@ -28,26 +28,29 @@ Linux_FileStream::Linux_FileStream(const String& fname, bool append)
 }
 
 
-Linux_FileStream::Linux_FileStream(int fileno)
-	: FileStream(String::format("/proc/self/fd/%d", fileno))
+PosixFileStream::PosixFileStream(int fileno, bool close)
+	: FileStream(String::format("/proc/self/fd/%d", fileno)),
+		m_File(fileno), m_Close(close)
 {
-	m_File = fileno;
 }
 
 
-Linux_FileStream::~Linux_FileStream()
+PosixFileStream::~PosixFileStream()
 {
-	close(m_File);
+	if (m_Close) {
+		/* TODO: you can't just close a file and not process an error */
+		close(m_File);
+	}
 }
 
 
-void Linux_FileStream::seek(int64_t offset, SeekType type)
+void PosixFileStream::seek(int64_t offset, SeekType type)
 {
 	lseek(m_File, offset, type);
 }
 
 
-int64_t Linux_FileStream::tell() const
+int64_t PosixFileStream::tell() const
 {
 	off64_t pos = lseek64(m_File, 0, SEEK_CUR);
 	if (pos == (off64_t) -1)
@@ -56,7 +59,7 @@ int64_t Linux_FileStream::tell() const
 }
 
 
-int32_t Linux_FileStream::read(char* buffer, int32_t count)
+int32_t PosixFileStream::read(char* buffer, int32_t count)
 {
 	ssize_t ret = ::read(m_File, buffer, count);
 	if (ret == -1)
@@ -65,7 +68,7 @@ int32_t Linux_FileStream::read(char* buffer, int32_t count)
 }
 
 
-int32_t Linux_FileStream::peek(char* buffer, int32_t count)
+int32_t PosixFileStream::peek(char* buffer, int32_t count)
 {
 	ssize_t ret = ::read(m_File, buffer, count);
 	if (ret == -1)
@@ -75,7 +78,7 @@ int32_t Linux_FileStream::peek(char* buffer, int32_t count)
 }
 
 
-int32_t Linux_FileStream::write(const char* buffer, int32_t length)
+int32_t PosixFileStream::write(const char* buffer, int32_t length)
 {
 	ssize_t ret = ::write(m_File, buffer, length);
 	if (ret == -1)
@@ -84,15 +87,9 @@ int32_t Linux_FileStream::write(const char* buffer, int32_t length)
 }
 
 
-FileStream* FileStream::makeInput(const String& fname)
+void PosixFileStream::flush() const
 {
-	return new Linux_FileStream(fname);
-}
-
-
-FileStream* FileStream::makeOutput(const String& fname, bool append)
-{
-	return new Linux_FileStream(fname, append);
+	fdatasync(m_File);
 }
 
 

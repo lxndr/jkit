@@ -114,8 +114,18 @@ public:
 	 * @brief Reads a String.
 	 */
 	String readString(int length = -1);
+
+
+	/**
+	 * 
+	 */
+	inline String readLine()
+		{ return readUntil('\n'); }
 	
 	
+	/**
+	 * 
+	 */
 	virtual int32_t write(const char* buffer, int32_t count) = 0;
 	
 	
@@ -139,6 +149,22 @@ public:
 	{
 		return write(s.ptr(), s.length()) == s.length();
 	}
+
+
+	/**
+	 *
+	 */
+	inline bool writeLine(const String& s)
+	{
+		return write(s.ptr(), s.length()) == s.length() &&
+			write(JKIT_NEW_LINE, sizeof(JKIT_NEW_LINE)) == 1;
+	}
+
+
+	/**
+	 *
+	 */
+	virtual void flush() const {};
 };
 
 

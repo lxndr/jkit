@@ -1,16 +1,27 @@
 #include <JKit/Core/Exception.hpp>
 #include <JKit/Core/LocalFile.hpp>
+#include <JKit/Core/Application.hpp>
 #include <iostream>
 
-int main()
-{
-	try {
-		J::LocalFile file("/us");
-		file.isDirectory();
-	} catch (J::Exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
-	
 
-	return 0;
-}
+class Application : public J::Application
+{
+public:
+	void startup() {
+		stdout->writeLine("Testing basic IO");
+
+		stdout->write("Enter file path: ");
+		stdout->flush();
+
+		auto fname = stdin->readLine();
+		stdout->writeLine(J::String::format("Opening file '%s'...", fname.ptr()));
+
+		J::LocalFile file(fname);
+		auto stm = file.read();
+		
+	}
+};
+
+
+
+JKIT_MAIN(Application)
