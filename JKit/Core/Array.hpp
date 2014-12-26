@@ -1,5 +1,5 @@
-#ifndef __JKIT__ARRAY_HPP__
-#define __JKIT__ARRAY_HPP__
+#ifndef __JKIT__CORE__ARRAY_HPP__
+#define __JKIT__CORE__ARRAY_HPP__
 
 #include <assert.h>
 #include <malloc.h>
@@ -23,7 +23,7 @@ public:
 	 * @brief Constructs an empty Array.
 	 */
 	inline Array()
-		: mValues(nullptr), mCount(0), mReserved(0)
+		: m_Values(nullptr), m_Count(0), m_Reserved(0)
 	{}
 	
 	
@@ -39,19 +39,19 @@ public:
 	 */
 	inline ~Array()
 	{
-		if (mCount)
+		if (m_Count)
 			removeAll();
-		if (mValues)
-			free(mValues);
+		if (m_Values)
+			free(m_Values);
 	}
 	
 	
 	/**
 	 * @brief Gets number of values.
 	 */
-	inline int getCount() const
+	inline int count() const
 	{
-		return mCount;
+		return m_Count;
 	}
 	
 	
@@ -60,8 +60,8 @@ public:
 	 */
 	inline void set(int index, const TYPE& value)
 	{
-		assert(index >= 0 && index < mCount);
-		mValues[index] = value;
+		assert(index >= 0 && index < m_Count);
+		m_Values[index] = value;
 	}
 	
 	
@@ -70,8 +70,8 @@ public:
 	 */
 	inline TYPE& get(int index)
 	{
-		assert(index >= 0 && index < mCount);
-		return mValues[index];
+		assert(index >= 0 && index < m_Count);
+		return m_Values[index];
 	}
 	
 	
@@ -80,8 +80,8 @@ public:
 	 */
 	inline const TYPE& get(int index) const
 	{
-		assert(index >= 0 && index < mCount);
-		return mValues[index];
+		assert(index >= 0 && index < m_Count);
+		return m_Values[index];
 	}
 	
 	
@@ -106,7 +106,7 @@ public:
 	 */
 	int find(const TYPE& value) const
 	{
-		for (int i = 0; i < mCount; i++)
+		for (int i = 0; i < m_Count; i++)
 		if (get(i) == value)
 			return i;
 		return -1;
@@ -119,12 +119,12 @@ public:
 	template<typename... Params>
 	TYPE& insert(int index, Params&&... params)
 	{
-		assert(index < mCount);
+		assert(index < m_Count);
 		
-		resize(mCount + 1);
-		memmove(mValues + index + 1, mValues + index,
-				sizeof(TYPE) * (mCount - index - 1));
-		new(&mValues[index]) TYPE(std::forward<Params>(params)...);
+		resize(m_Count + 1);
+		memmove(m_Values + index + 1, m_Values + index,
+				sizeof(TYPE) * (m_Count - index - 1));
+		new(&m_Values[index]) TYPE(std::forward<Params>(params)...);
 		return get(index);
 	}
 	
@@ -136,10 +136,10 @@ public:
 	template<typename... Params>
 	TYPE& append(Params&&... params)
 	{
-		int index = mCount;
-		resize(mCount + 1);
-		new(&mValues[index]) TYPE(std::forward<Params>(params)...);
-		return get(mCount - 1);
+		int index = m_Count;
+		resize(m_Count + 1);
+		new(&m_Values[index]) TYPE(std::forward<Params>(params)...);
+		return get(m_Count - 1);
 	}
 	
 	
@@ -148,9 +148,9 @@ public:
 	 */
 	int append(const TYPE& value)
 	{
-		int index = mCount;
-		resize(mCount + 1);
-		new(&mValues[index]) TYPE(value);
+		int index = m_Count;
+		resize(m_Count + 1);
+		new(&m_Values[index]) TYPE(value);
 		return index;
 	}
 	
@@ -160,7 +160,7 @@ public:
 	 */
 	void append(const Array<TYPE>& array)
 	{
-		for (int i = 0; i < array.getCount(); i++)
+		for (int i = 0; i < array.count(); i++)
 			append(array[i]);
 	}
 	
@@ -177,12 +177,12 @@ public:
 	 */
 	void remove(int index)
 	{
-		assert(0 <= index && index < mCount);
+		assert(0 <= index && index < m_Count);
 		
-		(&mValues[index])->~TYPE();
-		memmove(mValues + index, mValues + index + 1,
-				sizeof(TYPE) * (mCount - index - 1));
-		resize(mCount - 1);
+		(&m_Values[index])->~TYPE();
+		memmove(m_Values + index, m_Values + index + 1,
+				sizeof(TYPE) * (m_Count - index - 1));
+		resize(m_Count - 1);
 	}
 	
 	
@@ -202,12 +202,12 @@ public:
 	 */
 	void remove(const TYPE* value)
 	{
-		assert((value >= mValues) && (value < mValues + sizeof(TYPE) * mCount));
+		assert((value >= m_Values) && (value < m_Values + sizeof(TYPE) * m_Count));
 
 		value->~TYPE();
 		memmove(value, value + sizeof(TYPE),
-				(mValues + sizeof(TYPE) * mCount) - (value + sizeof(TYPE)));
-		resize(mCount - 1);
+				(m_Values + sizeof(TYPE) * m_Count) - (value + sizeof(TYPE)));
+		resize(m_Count - 1);
 	}
 	
 	
@@ -216,8 +216,8 @@ public:
 	 */
 	void removeAll()
 	{
-		for (int i = 0; i < mCount; i++)
-			(&mValues[i])->~TYPE();
+		for (int i = 0; i < m_Count; i++)
+			(&m_Values[i])->~TYPE();
 		resize(0);
 	}
 	
@@ -228,7 +228,7 @@ public:
 	void copy(const Array<TYPE>& array)
 	{
 		removeAll();
-		for (int i = 0; i < array.getCount(); i++)
+		for (int i = 0; i < array.count(); i++)
 			append(array[i]);
 	}
 	
@@ -243,9 +243,9 @@ public:
 	}
 	
 private:
-	TYPE* mValues;
-	int mCount;
-	int mReserved;
+	TYPE* m_Values;
+	int m_Count;
+	int m_Reserved;
 
 private:
 	/*
@@ -255,19 +255,19 @@ private:
 	{
 		assert(size >= 0);
 		
-		if (size > mReserved) {
-			mReserved = size + 16;
-			mValues = (TYPE*) realloc(mValues, mReserved * sizeof(TYPE));
+		if (size > m_Reserved) {
+			m_Reserved = size + 16;
+			m_Values = (TYPE*) realloc(m_Values, m_Reserved * sizeof(TYPE));
 		}
-		mCount = size;
+		m_Count = size;
 	}
 };
 
 
 
 #define foreach(value, array)	\
-		for(int i = 0; i < array.getCount(); i++) {	\
-			auto value = array[i];
+		for(int _i = 0; _i < array.count(); _i++) {	\
+			auto value = array[_i];
 #define end_foreach()	\
 		}
 
