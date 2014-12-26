@@ -1,4 +1,5 @@
 set (JKIT_SOURCES
+		Core/Application.cpp
 		Core/String.cpp
 		Core/Exception.cpp
 		Core/Stream.cpp

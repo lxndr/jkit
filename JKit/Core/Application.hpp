@@ -10,26 +10,11 @@ namespace J {
 class Application
 {
 public:
-	Application() {
-	}
-
-
-	virtual ~Application() {
-		
-	}
-
-
-	int run(int argc, char** argv) {
-		startup();
-	}
-
-
-	virtual void startup() {
-	}
-
-
-	virtual void commandLine(const StringList& args) {
-	}
+	Application();
+	virtual ~Application();
+	int run(int argc, char** argv);
+	virtual void startup();
+	virtual void commandLine(const StringList& args);
 };
 
 
@@ -38,6 +23,9 @@ public:
 
 #ifdef JKIT_PLATFORM_LINUX
 
+/**
+ * 
+ */
 #define JKIT_MAIN(app_class)			\
 	int main(int argc, char** argv) {	\
 		app_class app;					\
