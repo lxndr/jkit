@@ -1,8 +1,8 @@
-#include <Core/Windows/Utils.hpp>
-#include <Core/Windows/FileStream.hpp>
+#include <JKit/Core/Detail/Windows/Utils.hpp>
+#include <JKit/Core/Detail/Windows/FileStream.hpp>
 
 
-namespace g3d {
+namespace J {
 
 
 Windows_FileStream::Windows_FileStream(const String& fname)
@@ -32,18 +32,6 @@ Windows_FileStream::Windows_FileStream(const String& fname, bool append)
 	
 	if (append)
 		seek(0, SeekEnd);
-}
-
-
-FileStream* FileStream::makeInput(const String& fname)
-{
-	return new Windows_FileStream(fname);
-}
-
-
-FileStream* FileStream::makeOutput(const String& fname, bool append)
-{
-	return new Windows_FileStream(fname, append);
 }
 
 

@@ -60,7 +60,7 @@ public:
 	/**
 	 * 
 	 */
-	virtual int32_t peek(char* buffer, int32_t count) = 0;
+	virtual int64_t peek(char* buffer, int64_t count) = 0;
 	
 	
 	/**
@@ -77,7 +77,7 @@ public:
 	/**
 	 * 
 	 */
-	virtual int32_t read(char* buffer, int32_t count) = 0;
+	virtual int64_t read(char* buffer, int64_t count) = 0;
 	
 	
 	/**
@@ -126,7 +126,7 @@ public:
 	/**
 	 * 
 	 */
-	virtual int32_t write(const char* buffer, int32_t count) = 0;
+	virtual int64_t write(const char* buffer, int64_t count) = 0;
 	
 	
 	/**

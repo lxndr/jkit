@@ -149,28 +149,29 @@ String String::format(const char* fmt, ...)
 	
 	va_start(args, fmt);
 #ifdef __USE_GNU
+
 	len = vasprintf(&buf, fmt, args);
+
 #else /* __USE_GNU */
-#ifdef __MSVCRT__
+
+#ifdef _MSC_VER
 	#define PRINTF_GETLEN(f, a) _vscprintf(f, a)
-#else
-	#define PRINTF_GETLEN(f, a) vsnprintf(NULL, 0, f, a)
-#endif
-#if defined(__MSVCRT__) && defined(_MSC_VER)
 	#define PRINTF_N(p, l, f, a) vsnprintf_s(p, l + 1, l, f, a)
 #else
+	#define PRINTF_GETLEN(f, a) vsnprintf(NULL, 0, f, a)
 	#define PRINTF_N(p, l, f, a) vsnprintf(p, l, f, a)
 #endif
 	len = PRINTF_GETLEN(fmt, args);
-	buf = new char[len + 1];
+	buf = (char*) malloc(len + 1);
 	PRINTF_N(buf, len, fmt, args);
 	#undef PRINTF_GETLEN
 	#undef PRINTF_N
+
 #endif /* __USE_GNU */
+
 	String s(buf, len);
 	va_end(args);
-	
-	delete[] buf;
+	free(buf);
 	return s;
 }
 

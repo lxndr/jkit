@@ -1,11 +1,11 @@
-#include <Core/Windows/Utils.hpp>
-#include <Core/Exception.hpp>
+#include <JKit/Core/Detail/Windows/Utils.hpp>
+#include <JKit/Core/Exception.hpp>
 
 
 namespace J {
 
 
-GenericException::GenericException(const String& reason, bool getError) G3D_NOEXCEPT
+GenericException::GenericException(const String& reason, bool getError) JKIT_NOEXCEPT
 	: m_Reason(reason)
 {
 	if (!getError) {

@@ -14,7 +14,7 @@
 
 
 #if defined(_WINDOWS) || defined(_WIN32) || defined(__CYGWIN__)
-	#ifdef engine_EXPORTS
+	#ifdef JKIT_EXPORTS
 		#ifdef __GNUC__
 			#define JKIT_PUBLIC_API __attribute__ ((dllexport))
 		#else
@@ -74,6 +74,8 @@
 
 #if defined(JKIT_PLATFORM_LINUX)
 	#define JKIT_NEW_LINE "\n"
+#elif defined(JKIT_PLATFORM_WINDOWS)
+	#define JKIT_NEW_LINE "\r\n"
 #endif
 
 

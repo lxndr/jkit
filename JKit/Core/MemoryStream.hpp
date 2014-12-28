@@ -21,13 +21,13 @@ public:
 	/**
 	 * 
 	 */
-	MemoryStream(size_t length);
+	MemoryStream(int64_t length);
 	
 	
 	/**
 	 *
 	 */
-	MemoryStream(char* data, size_t length);
+	MemoryStream(char* data, int64_t length);
 	
 	
 	/**
@@ -51,19 +51,19 @@ public:
 	/**
 	 * 
 	 */
-	int32_t read(char* buffer, int32_t count);
+	int64_t read(char* buffer, int64_t count);
 	
 	
 	/**
 	 * 
 	 */
-	int32_t peek(char* buffer, int32_t count);
+	int64_t peek(char* buffer, int64_t count);
 	
 	
 	/**
 	 * 
 	 */
-	int32_t write(const char* buffer, int32_t count);
+	int64_t write(const char* buffer, int64_t count);
 	
 	
 	/**
@@ -89,9 +89,9 @@ public:
 private:
 	char* mData;
 	char* mCurrent;
-	uint32_t mSize;
+	int64_t mSize;
 	
-	void resize(size_t length);
+	void resize(int64_t length);
 };
 
 

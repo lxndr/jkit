@@ -1,8 +1,7 @@
 #ifndef __JKIT__CORE__WINDOWS__UTILS_HPP__
 #define __JKIT__CORE__WINDOWS__UTILS_HPP__
 
-#include <Core/Platform.hpp>
-#include <Core/String.hpp>
+#include <JKit/Core/String.hpp>
 
 
 namespace J {

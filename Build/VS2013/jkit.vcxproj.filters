@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Core">
+      <UniqueIdentifier>{7b24c95f-1622-48bd-a3fe-94a6339915aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Detail">
+      <UniqueIdentifier>{7726961a-bb37-4a9c-bdde-c5973e193a2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Detail\Windows">
+      <UniqueIdentifier>{a5a195ac-8af8-400d-ad41-cf09261754d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\JKit\Core\Application.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Exception.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\FileStream.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\MemoryStream.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Object.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\ObjectProperty.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Stream.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\String.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\Exception.cpp">
+      <Filter>Core\Detail\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\FileStream.cpp">
+      <Filter>Core\Detail\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\Utils.cpp">
+      <Filter>Core\Detail\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\LocalFile.cpp">
+      <Filter>Core\Detail\Windows</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\JKit\Core\Application.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Array.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Exception.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\File.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\FileStream.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\LocalFile.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Map.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\MemoryStream.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Object.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\ObjectProperty.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Platform.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Stream.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\String.hpp">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Detail\Windows\FileStream.hpp">
+      <Filter>Core\Detail\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\JKit\Core\Detail\Windows\Utils.hpp">
+      <Filter>Core\Detail\Windows</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

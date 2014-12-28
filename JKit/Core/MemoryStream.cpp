@@ -6,7 +6,7 @@
 namespace J {
 
 
-void MemoryStream::resize(size_t length)
+void MemoryStream::resize(int64_t length)
 {
 	if (length == 0) {
 		if (mData != nullptr) {
@@ -15,7 +15,7 @@ void MemoryStream::resize(size_t length)
 			mCurrent = nullptr;
 		}
 	} else {
-		mData = (char*) realloc(mData, length);
+		mData = (char*) realloc(mData, (size_t) length);
 		if (!mData)
 			throw StreamException("Out of memory");
 	}
@@ -24,7 +24,7 @@ void MemoryStream::resize(size_t length)
 }
 
 
-MemoryStream::MemoryStream(size_t length)
+MemoryStream::MemoryStream(int64_t length)
 	: mData(nullptr)
 {
 	resize(length);
@@ -32,11 +32,11 @@ MemoryStream::MemoryStream(size_t length)
 }
 
 
-MemoryStream::MemoryStream(char* data, size_t length)
+MemoryStream::MemoryStream(char* data, int64_t length)
 	: mData(nullptr)
 {
 	resize(length);
-	memcpy(mData, data, length);
+	memcpy(mData, data, (size_t) length);
 	mCurrent = mData;
 }
 
@@ -77,29 +77,29 @@ int64_t MemoryStream::tell() const
 }
 
 
-int32_t MemoryStream::read(char* buffer, int32_t count)
+int64_t MemoryStream::read(char* buffer, int64_t count)
 {
-	memcpy(buffer, mCurrent, count);
+	memcpy(buffer, mCurrent, (size_t) count);
 	mCurrent += count;
 	return true;
 }
 
 
-int32_t MemoryStream::peek(char* buffer, int32_t count)
+int64_t MemoryStream::peek(char* buffer, int64_t count)
 {
-	memcpy(buffer, mCurrent, count);
+	memcpy(buffer, mCurrent, (size_t) count);
 	return true;
 }
 
 
-int32_t MemoryStream::write(const char* buffer, int32_t count)
+int64_t MemoryStream::write(const char* buffer, int64_t count)
 {
 	if (tell() + count > mSize) {
 		mSize = tell() + count;
-		mData = (char*) realloc(mData, mSize);
+		mData = (char*) realloc(mData, (size_t) mSize);
 	}
 	
-	memcpy(mCurrent, buffer, count);
+	memcpy(mCurrent, buffer, (size_t) count);
 	mCurrent += count;
 	return true;
 }

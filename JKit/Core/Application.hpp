@@ -17,10 +17,17 @@ public:
 	virtual void startup();
 	virtual void commandLine(const StringList& args);
 
-public:
-	Stream* stdin;
-	Stream* stdout;
-	Stream* stderr;
+	inline Stream& stdIn() const
+		{ return *m_StdIn; }
+	inline Stream& stdOut() const
+		{ return *m_StdOut; }
+	inline Stream& stdErr() const
+		{ return *m_StdErr; }
+
+private:
+	Stream* m_StdIn;
+	Stream* m_StdOut;
+	Stream* m_StdErr;
 };
 
 

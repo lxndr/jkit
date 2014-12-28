@@ -1,14 +1,13 @@
 #include <JKit/Core/Application.hpp>
 #include <JKit/Core/Detail/Posix/FileStream.hpp>
-#include <unistd.h>
 
 
 namespace J {
 
 Application::Application() {
-	stdin = new PosixFileStream(STDIN_FILENO, false);
-	stdout = new PosixFileStream(STDOUT_FILENO, false);
-	stderr = new PosixFileStream(STDERR_FILENO, false);
+/*	m_StdIn = new PosixFileStream(STDIN_FILENO, false);
+	m_StdOut = new PosixFileStream(STDOUT_FILENO, false);
+	m_StdErr = new PosixFileStream(STDERR_FILENO, false); */
 }
 
 
@@ -19,6 +18,7 @@ Application::~Application() {
 
 int Application::run(int argc, char** argv) {
 	startup();
+	return 0;
 }
 
 

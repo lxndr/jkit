@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A83E5D06-892C-43E6-BDEE-F40C639D6983}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>jkit</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;JKIT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ObjectFileName>$(IntDir)\fake\dir\%(RelativeDir)</ObjectFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;JKIT_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <ObjectFileName>$(IntDir)\fake\dir\%(RelativeDir)</ObjectFileName>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\JKit\Core\Application.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\Exception.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\LocalFile.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\FileStream.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Detail\Windows\Utils.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Exception.cpp" />
+    <ClCompile Include="..\..\JKit\Core\FileStream.cpp" />
+    <ClCompile Include="..\..\JKit\Core\MemoryStream.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Object.cpp" />
+    <ClCompile Include="..\..\JKit\Core\ObjectProperty.cpp" />
+    <ClCompile Include="..\..\JKit\Core\Stream.cpp" />
+    <ClCompile Include="..\..\JKit\Core\String.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\JKit\Core\Application.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Array.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Detail\Windows\FileStream.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Detail\Windows\Utils.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Exception.hpp" />
+    <ClInclude Include="..\..\JKit\Core\File.hpp" />
+    <ClInclude Include="..\..\JKit\Core\FileStream.hpp" />
+    <ClInclude Include="..\..\JKit\Core\LocalFile.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Map.hpp" />
+    <ClInclude Include="..\..\JKit\Core\MemoryStream.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Object.hpp" />
+    <ClInclude Include="..\..\JKit\Core\ObjectProperty.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Platform.hpp" />
+    <ClInclude Include="..\..\JKit\Core\Stream.hpp" />
+    <ClInclude Include="..\..\JKit\Core\String.hpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

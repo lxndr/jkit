@@ -1,12 +1,12 @@
 #ifndef __JKIT__CORE__WINDOWS__FILE_HPP__
 #define __JKIT__CORE__WINDOWS__FILE_HPP__
 
-#include <Core/File.hpp>
+#include <JKit/Core/File.hpp>
 
 namespace J {
 
 
-class G3D_LOCAL_API Windows_File : public File
+class JKIT_LOCAL_API Windows_File : public File
 {
 public:
 	Windows_File(const String& path);

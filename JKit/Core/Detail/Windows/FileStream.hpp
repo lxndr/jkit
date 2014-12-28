@@ -1,11 +1,11 @@
-#ifndef __G3D__CORE__WINDOWS__FILE_STREAM_HPP__
-#define __G3D__CORE__WINDOWS__FILE_STREAM_HPP__
+#ifndef __JKIT__CORE__WINDOWS__FILE_STREAM_HPP__
+#define __JKIT__CORE__WINDOWS__FILE_STREAM_HPP__
 
-#include <Core/FileStream.hpp>
+#include <JKit/Core/FileStream.hpp>
 
-namespace g3d {
+namespace J {
 
-class G3D_LOCAL_API Windows_FileStream : public FileStream
+class JKIT_LOCAL_API Windows_FileStream : public FileStream
 {
 public:
 	Windows_FileStream(const String& fname);

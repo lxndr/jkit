@@ -1,5 +1,5 @@
 #include <memory>
-#include <Core/Windows/Utils.hpp>
+#include <JKit/Core/Detail/Windows/Utils.hpp>
 
 namespace J {
 
