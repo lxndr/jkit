@@ -56,7 +56,11 @@ String Stream::readString(int length)
 }
 
 
-
+int64_t Stream::peek(char* buffer, int64_t count) {
+	auto ret = read(buffer, count);
+	seek(count, SeekType::SeekCurrent);
+	return ret;
+}
 
 
 }

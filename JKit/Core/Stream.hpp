@@ -60,7 +60,7 @@ public:
 	/**
 	 * 
 	 */
-	virtual int64_t peek(char* buffer, int64_t count) = 0;
+	virtual int64_t peek(char* buffer, int64_t count);
 	
 	
 	/**

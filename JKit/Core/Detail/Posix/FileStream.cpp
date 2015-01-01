@@ -52,35 +52,25 @@ void PosixFileStream::seek(int64_t offset, SeekType type)
 
 int64_t PosixFileStream::tell() const
 {
-	off64_t pos = lseek64(m_File, 0, SEEK_CUR);
+	auto pos = lseek64(m_File, 0, SEEK_CUR);
 	if (pos == (off64_t) -1)
 		return 0;
 	return pos;
 }
 
 
-int32_t PosixFileStream::read(char* buffer, int32_t count)
+int64_t PosixFileStream::read(char* buffer, int64_t count)
 {
-	ssize_t ret = ::read(m_File, buffer, count);
+	auto ret = ::read(m_File, buffer, count);
 	if (ret == -1)
 		throw FileStreamException("Failed to read file", fileName());
 	return ret;
 }
 
 
-int32_t PosixFileStream::peek(char* buffer, int32_t count)
+int64_t PosixFileStream::write(const char* buffer, int64_t length)
 {
-	ssize_t ret = ::read(m_File, buffer, count);
-	if (ret == -1)
-		throw FileStreamException("Failed to read file", fileName());
-	lseek(m_File, -ret, SEEK_CUR);
-	return ret;
-}
-
-
-int32_t PosixFileStream::write(const char* buffer, int32_t length)
-{
-	ssize_t ret = ::write(m_File, buffer, length);
+	auto ret = ::write(m_File, buffer, length);
 	if (ret == -1)
 		throw FileStreamException("Failed to write file", fileName());
 	return ret;

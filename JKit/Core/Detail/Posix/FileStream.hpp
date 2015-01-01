@@ -18,9 +18,8 @@ public:
 	void seek(int64_t offset, SeekType type);
 	int64_t tell() const;
 	
-	int32_t read(char* buffer, int32_t count);
-	int32_t peek(char* buffer, int32_t count);
-	int32_t write(const char* buffer, int32_t count);
+	int64_t read(char* buffer, int64_t count);
+	int64_t write(const char* buffer, int64_t count);
 	void flush() const;
 
 private:
