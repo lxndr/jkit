@@ -1,0 +1,1 @@
+./Debug/Core_Application.cpp.o ./Debug/Core_Exception.cpp.o ./Debug/Core_FileStream.cpp.o ./Debug/Core_MemoryStream.cpp.o ./Debug/Core_Object.cpp.o ./Debug/Core_ObjectProperty.cpp.o ./Debug/Core_Stream.cpp.o ./Debug/Core_String.cpp.o ./Debug/Posix_Exception.cpp.o ./Debug/Posix_FileStream.cpp.o ./Debug/Posix_LocalFile.cpp.o
